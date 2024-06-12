@@ -7,8 +7,13 @@ function ShoppingList({ items }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchCategory, setSearchCategory] = useState('')
 
+
+  //onSubmit event to form
+  //Pass funtion as prop to itemForm
+  //Make controlled state
+
+
   function handleSearchChange(event) {
-    console.log(event.target.value)
     setSearchCategory(event.target.value)
   }
 
@@ -17,15 +22,15 @@ function ShoppingList({ items }) {
   }
 
   const itemsToDisplay = items.filter((item) => {
-    if (selectedCategory === "All") return true;
+    const categoryMatch = selectedCategory === "All" || item.category === selectedCategory
+    const searchMatch = item.name.includes(searchCategory)
 
-    return item.category === selectedCategory;
-  });
+    return categoryMatch && searchMatch
+  })
 
   return (
     <div className="ShoppingList">
-      <ItemForm />
-      <Filter onCategoryChange={handleCategoryChange} onSearchCategory={handleSearchChange}/>
+      <Filter onCategoryChange={handleCategoryChange} onSearchChange={handleSearchChange}/>
       <ul className="Items">
         {itemsToDisplay.map((item) => (
           <Item key={item.id} name={item.name} category={item.category} />
