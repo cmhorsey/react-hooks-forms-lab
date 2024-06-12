@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 
-function ItemForm({ onFormSubmit }) {
+function ItemForm({ onItemFormSubmit }) {
   const [newItemName, setNewItem] = useState('')
   const [newCategory, setNewCategory] = useState('Produce')
-
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -13,7 +12,7 @@ function ItemForm({ onFormSubmit }) {
       name: newItemName,
       category: newCategory,
     }
-    onFormSubmit(newItem)
+    onItemFormSubmit(newItem)
     setNewItem('')
     setNewCategory('Produce')
   }
@@ -41,7 +40,6 @@ function ItemForm({ onFormSubmit }) {
           <option value="Dessert">Dessert</option>
         </select>
       </label>
-
       <button type="submit">Add to List</button>
     </form>
   );

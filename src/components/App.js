@@ -16,11 +16,10 @@ function App() {
     setItems([...items, newItem])
   }
 
-
   return (
     <div className={"App " + (isDarkMode ? "dark" : "light")}>
       <Header isDarkMode={isDarkMode} onDarkModeClick={handleDarkModeClick} />
-      <ItemForm onFormSubmit={handleFormSubmit}/>
+      <ItemForm onItemFormSubmit={handleFormSubmit}/>
       <ShoppingList items={items} itemList={itemData}/>
     </div>
   );
